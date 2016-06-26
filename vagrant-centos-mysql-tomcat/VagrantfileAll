@@ -1,0 +1,98 @@
+################################################################
+#
+# Author: 	Mark Higginbottom
+#
+# Date:		13/6/2016
+#
+#Vagrant PROJECT file to create docker containers 
+#
+#
+################################################################
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+
+DOCKER_HOST_NAME = "dockerhost"
+DOCKER_HOST_VAGRANTFILE = "./host/Vagrantfile"
+ 
+Vagrant.configure("2") do |config|
+
+  config.vm.define "postgres" do |v|
+    v.vm.provider "docker" do |d|
+      d.image = "postgres:9.6"
+      d.name = "postgres"
+	  #d.create_args = ["--volumes-from=shared-data"]
+      d.env = {
+        :POSTGRES_USER      => "root",
+        :POSTGRES_PASSWORD  => "root",
+        :POSTGRES_DB         => "dockertest"
+      }
+      d.ports =["5432:5432"]
+      d.remains_running = "true"
+	  #map postgres data folder to (shared) folder on dockerhost
+	  d.volumes=["/home/vagrant/workspace/shared-data/postgres:/var/lib/postgresql"]
+      d.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
+    end
+  end
+  
+  config.vm.define "mysql" do |v|
+    v.vm.provider "docker" do |d|
+      d.image = "mysql:5.7"
+      d.name = "mysql"
+	  #d.create_args = ["--volumes-from=shared-data"]
+      d.env = {
+        :MYSQL_ROOT_PASSWORD => "root",
+        :MYSQL_DATABASE     => "dockertest",
+        :MYSQL_USER         => "dockertest",
+        :MYSQL_PASSWORD     => "docker"
+      }
+      d.ports =["3306:3306"]
+      d.remains_running = "true"
+	  #map mysql data folder to (shared) folder on dockerhost
+	  d.volumes=["/home/vagrant/workspace/shared-data/mysql/data:/var/lib/mysql"]
+      d.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
+    end
+  end
+  
+  config.vm.define "jenkins" do |v|
+    v.vm.provider "docker" do |d|
+      d.image = "jenkins:latest"
+      d.name = "jenkins"
+      d.ports =["9080:8080"]
+      d.remains_running = "true"
+	  #map jenkins data folder to (shared) folder on dockerhost
+	  d.volumes=["/home/vagrant/workspace/shared-data/jenkins:/var/jenkins_home"]
+      d.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
+    end
+  end
+  
+  config.vm.define "tomcat" do |v|
+    v.vm.provider "docker" do |d|
+      #container specific docker provisioning
+      #d.dockerfile = "tomcat-dockerfile"
+      d.image = "tomcat:8.5"
+      d.name = "tomcat"
+      d.env = {
+        :CATALINA_BASE => "/usr/local/tomcat",
+		:CATALINA_HOME => "/usr/local/tomcat",
+		:CATALINA_TMPDIR => "/usr/local/tomcat/temp",
+		:JPDA_ADDRESS => "8000",
+		:JPDA_TRANSPORT => "dt_socket",
+		:JRE_HOME => "/usr",
+		:CLASSPATH => "/usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar"
+      }
+      #Link this container to the DB containers
+      d.link("postgres:postgres")
+      d.link("mysql:mysql")
+	  #map container folder to (shared) folder on dockerhost
+	  #WARNING - Host takes precedence i.e. empty host directory empties container directory!!
+	  d.volumes=["/home/vagrant/workspace/shared-data/tomcat/webapps:/usr/local/tomcat/webapps","/home/vagrant/workspace/shared-data/tomcat/conf:/usr/local/tomcat/conf"]
+      d.ports =["8080:8080","8000:8000"]
+      d.remains_running = "true"
+      d.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      d.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
+    end
+  end
+
+end

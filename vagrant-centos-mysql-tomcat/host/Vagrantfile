@@ -1,0 +1,91 @@
+################################################################
+#
+# Author: 	Mark Higginbottom
+#
+# Date:		13/6/2016
+#
+#Vagrant HOST file to create DOCKERHOST for docker containers 
+#
+#
+################################################################
+
+ENV["VAGRANT_DETECTED_OS"] = ENV["VAGRANT_DETECTED_OS"].to_s + " cygwin"
+FORWARD_DOCKER_PORTS='true'
+Vagrant.configure(2) do |config|
+  config.vm.provision "docker"
+ 
+  # The following line terminates all ssh connections. Therefore
+  # Vagrant will be forced to reconnect.
+  # That's a workaround to have the docker command in the PATH
+  #Clear any existing ssh connections
+  ####NOTE: ps aux seems to give variable results depending on rbox -> process number can be ####first #or second causing provision to fail!!!
+  config.vm.provision "clear-ssh", type: "shell", inline:
+#        "ps aux | grep 'sshd:' | awk '{print $1}'  | xargs kill" #dduportal/boot2docker ONLY
+        "ps aux | grep 'sshd:' | awk '{print $2}' | xargs kill" #Every other box
+  
+  #Info script
+  $script = <<SCRIPT
+  echo Environment information.... 
+  cat /etc/issue
+  cat /etc/*-release
+  uname -a
+  mkdir -p /home/vagrant/workspace/shared-data/postgres/data
+  chown -R vagrant:vagrant /home/vagrant/workspace
+SCRIPT
+  
+  config.vm.provision "info", type: "shell", inline: $script
+ 
+  config.vm.define "dockerhost"
+  config.vm.box = "bento/centos-7.2"
+    
+  #Project specific config needed on docker host
+  config.vm.network "forwarded_port",guest: 8080, host: 8080 	# Tomcat
+  config.vm.network "forwarded_port",guest: 8000, host: 8000	# Tomcat debug. Dont think this is exposed by the image
+  config.vm.network "forwarded_port",guest: 3306, host: 3306	# MySQL
+  config.vm.network "forwarded_port",guest: 5432, host: 5432	# PostgreSQL
+  config.vm.network "forwarded_port",guest: 9080, host: 9080 	# Jenkins -> Map to 8080 in container
+  config.vm.network "forwarded_port",guest: 50000, host: 50000	# Jenkins
+  
+  
+  # Share an additional COMMON folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. Sets up a common folder for use by the 
+  # utility data-container for sharing ata with host and between containers.
+  # The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  config.vm.synced_folder "C:/dev/vagrant/workspace/SpringMVCHibernate/shared-data/mysql", "/home/vagrant/workspace/shared-data/mysql"
+  config.vm.synced_folder "C:/dev/vagrant/workspace/SpringMVCHibernate/shared-data/postgres/data", "/home/vagrant/workspace/shared-data/postgres/data"
+  config.vm.synced_folder "C:/dev/vagrant/workspace/SpringMVCHibernate/shared-data/tomcat", "/home/vagrant/workspace/shared-data/tomcat"
+  config.vm.synced_folder "C:/dev/vagrant/workspace/SpringMVCHibernate/shared-data/jenkins", "/home/vagrant/workspace/shared-data/jenkins"
+  #config.vm.synced_folder "C:/dev/vagrant/workspace/SpringMVCHibernate/shared-data", "/home/vagrant/workspace/shared-data"
+  #config.vm.synced_folder "C:/dev/vagrant/workspace/SpringMVCHibernate/", "/home/vagrant/workspace/project"
+ 
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  
+    config.vm.provider "virtualbox" do |vb|
+	      vb.name = "dockerhost"
+  #   # Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+  #   # Customize the amount of memory on the VM:
+     vb.memory = 1024
+     vb.cpus = 2
+   end
+  #
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+   config.vm.provision "shell", inline: <<-SHELL
+  #   sudo apt-get update
+	#  sudo curl -fsSL https://get.docker.com/ | sh
+	#  sudo service docker start
+	#  sudo usermod -a -G docker $USER
+	  sudo chkconfig docker on
+      sudo yum install -y vim
+  #   sudo apt-get install -y apache2
+   SHELL
+end
