@@ -35,4 +35,4 @@ MySQL Workbench 6.3
 []Add deploy target for maven pom
 []Add Jenkins container
 []Add Jenkins job to this repo
-[]Investigate adding Vagrant environment build and deploy too Jenkins CI job
+[]Investigate adding Vagrant environment build and deploy too Jenkins CI job 
