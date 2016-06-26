@@ -7,13 +7,13 @@ The project is an Eclipse project workspace.
 
 ##Pre-requisites
 
-Eclipse Luna
-Java SDK 8
-Maven 3.3.9
-Vagrant 1.8.4
-VirtualBox 5.0.22
-Cygwin (for Vagrant?)
-MySQL Workbench 6.3
+- Eclipse Luna
+- Java SDK 8
+- Maven 3.3.9
+- Vagrant 1.8.4
+- VirtualBox 5.0.22
+- Cygwin (for Vagrant?)
+- MySQL Workbench 6.3
 
 
 ##Instructions
