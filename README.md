@@ -7,13 +7,19 @@ The project is an Eclipse project workspace.
 
 ##Pre-requisites
 
--Eclipse Luna
--Java SDK 8
--Maven 3.3.9
--Vagrant 1.8.4
--VirtualBox 5.0.22
--Cygwin (for Vagrant?)
--MySQL Workbench 6.3
+ Eclipse Luna
+ 
+ Java SDK 8
+ 
+ Maven 3.3.9
+ 
+ Vagrant 1.8.4
+ 
+ VirtualBox 5.0.22
+ 
+ Cygwin (for Vagrant?)
+ 
+ MySQL Workbench 6.3
 
 
 ##Instructions
@@ -31,8 +37,12 @@ The project is an Eclipse project workspace.
   * use manager application to deploy target\SpringMVCHibernate.war
 
 ##Things to do
-- [ ]Switch EventLog to PostgreSQL
-- [ ]Add deploy target for maven pom
-- [ ]Add Jenkins container
-- [ ]Add Jenkins job to this repo
-- [ ]Investigate adding Vagrant environment build and deploy too Jenkins CI job 
+ [ ]Switch EventLog to PostgreSQL
+ 
+ [ ]Add deploy target for maven pom
+ 
+ [ ]Add Jenkins container
+ 
+ [ ]Add Jenkins job to this repo
+ 
+ [ ]Investigate adding Vagrant environment build and deploy too Jenkins CI job 
