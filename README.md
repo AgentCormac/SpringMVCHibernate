@@ -37,12 +37,12 @@ The project is an Eclipse project workspace.
   * use manager application to deploy target\SpringMVCHibernate.war
 
 ##Things to do
- [ ]Switch EventLog to PostgreSQL
+ [ ] Switch EventLog to PostgreSQL
  
- [ ]Add deploy target for maven pom
+ [ ] Add deploy target for maven pom
  
- [ ]Add Jenkins container
+ [ ] Add Jenkins container
  
- [ ]Add Jenkins job to this repo
+ [ ] Add Jenkins job to this repo
  
- [ ]Investigate adding Vagrant environment build and deploy too Jenkins CI job 
+ [ ] Investigate adding Vagrant environment build and deploy too Jenkins CI job 
