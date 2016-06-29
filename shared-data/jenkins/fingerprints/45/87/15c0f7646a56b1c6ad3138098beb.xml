@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-06-28 09:03:20.418 UTC</timestamp>
+  <md5sum>458715c0f7646a56b1c6ad3138098beb</md5sum>
+  <fileName>xml-apis:xml-apis-1.0.b2.jar</fileName>
+  <usages>
+    <entry>
+      <string>Build1</string>
+      <ranges>2-4</ranges>
+    </entry>
+    <entry>
+      <string>Build1/com.higginbottom.mark.spring.mvc:SpringMVCHibernate</string>
+      <ranges>2-4</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

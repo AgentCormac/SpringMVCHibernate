@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-06-28 09:03:20.192 UTC</timestamp>
+  <md5sum>b004158fab904f37f5831860898b3cd9</md5sum>
+  <fileName>commons-dbcp:commons-dbcp-1.4.jar</fileName>
+  <usages>
+    <entry>
+      <string>Build1</string>
+      <ranges>2-4</ranges>
+    </entry>
+    <entry>
+      <string>Build1/com.higginbottom.mark.spring.mvc:SpringMVCHibernate</string>
+      <ranges>2-4</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

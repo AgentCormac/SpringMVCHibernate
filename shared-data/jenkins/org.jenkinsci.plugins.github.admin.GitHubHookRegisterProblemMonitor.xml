@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.github.admin.GitHubHookRegisterProblemMonitor plugin="github@1.19.2">
+  <id>GitHubHookRegisterProblemMonitor</id>
+  <ignored>
+    <com.cloudbees.jenkins.GitHubRepositoryName>
+      <host>github.com</host>
+      <userName>AgentCormac</userName>
+      <repositoryName>SpringMVCHibernate</repositoryName>
+    </com.cloudbees.jenkins.GitHubRepositoryName>
+  </ignored>
+</org.jenkinsci.plugins.github.admin.GitHubHookRegisterProblemMonitor>

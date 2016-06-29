@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-06-28 09:03:20.77 UTC</timestamp>
+  <md5sum>3ef200c3586a39b23e4e9237efb24f72</md5sum>
+  <fileName>org.springframework:spring-core-4.0.3.RELEASE.jar</fileName>
+  <usages>
+    <entry>
+      <string>Build1</string>
+      <ranges>2-4</ranges>
+    </entry>
+    <entry>
+      <string>Build1/com.higginbottom.mark.spring.mvc:SpringMVCHibernate</string>
+      <ranges>2-4</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.higginbottom.mark.spring.mvc</groupId>
+  <artifactId>SpringMVCHibernate</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.0-BUILD-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20160628104646</lastUpdated>
+  </versioning>
+</metadata>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-06-28 09:03:21.80 UTC</timestamp>
+  <md5sum>3b1ececad9ebc3fbad2953ccf4a070ca</md5sum>
+  <fileName>org.slf4j:slf4j-api-1.7.5.jar</fileName>
+  <usages>
+    <entry>
+      <string>Build1</string>
+      <ranges>2-4</ranges>
+    </entry>
+    <entry>
+      <string>Build1/com.higginbottom.mark.spring.mvc:SpringMVCHibernate</string>
+      <ranges>2-4</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fingerprint>
+  <timestamp>2016-06-28 09:03:19.869 UTC</timestamp>
+  <original>
+    <name>Build1/com.higginbottom.mark.spring.mvc:SpringMVCHibernate</name>
+    <number>2</number>
+  </original>
+  <md5sum>adf9ec431b8b48ffe7a2253e44e833d9</md5sum>
+  <fileName>com.higginbottom.mark.spring.mvc:SpringMVCHibernate.war</fileName>
+  <usages>
+    <entry>
+      <string>Build1</string>
+      <ranges>2</ranges>
+    </entry>
+    <entry>
+      <string>Build1/com.higginbottom.mark.spring.mvc:SpringMVCHibernate</string>
+      <ranges>2</ranges>
+    </entry>
+  </usages>
+  <facets/>
+</fingerprint>
