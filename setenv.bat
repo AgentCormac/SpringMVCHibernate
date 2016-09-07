@@ -12,8 +12,8 @@ REM #######################################################################
 echo:
 echo Setting up development environment.
 echo:
-echo Switching Maven build from Apt 1.4.2 to (Non-Corporate) Maven 3.3.9
+echo Switching Maven build from Apt 2.5 (in C:\Apt for Java-1.2.3) to (Non-Corporate) Maven 3.3.9
 REM #This replaces "Apt for Java-1.4.2" for "\Java\apache-maven-3.3.9" in the Path env variable! BY MAGIC!!!
-set Path=%Path:Apt for Java-1.4.2=\Java\apache-maven-3.3.9%
-echo:
+set Path=%Path:Apt for Java-1.2.3=\Java\apache-maven-3.3.9%
+echo: 
 mvn -v
