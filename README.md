@@ -36,6 +36,8 @@ The project is an Eclipse project workspace.
 3. Tomcat 8.5 should be up on http://localhost:8080
   * use manager application to deploy target\SpringMVCHibernate.war
 
+NOTE: This project currrently uses Maven 3.3.9 rather than corporate Apt Maven. Modify setenv.bat to correct your path environment variable.
+
 ##Things to do
  [ ] Switch EventLog to PostgreSQL
  
